@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LockBox</string>
+    <string name="enter_your_password">Please type your password!</string>
+    <string name="submit">Submit</string>
+    <string name="welcome_to_lockbox">Welcome to LockBox</string>
+    <string name="forgot_password">Forgot Password?</string>
 </resources>
