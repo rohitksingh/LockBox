@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LockBox">
-        <activity android:name=".CredentialActivity">
+        <activity android:name=".views.CredentialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
