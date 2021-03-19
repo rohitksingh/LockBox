@@ -35,4 +35,10 @@ public class SignUpFragment extends Fragment {
     public void submit(){
         Toast.makeText(getContext(), "Credential is "+credential.getPassword(), Toast.LENGTH_SHORT).show();
     }
+
+    //TODO
+    public boolean validate(){
+        return true;
+        //Write method to validate the method
+    }
 }
