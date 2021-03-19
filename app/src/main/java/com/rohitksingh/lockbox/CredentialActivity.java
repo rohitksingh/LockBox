@@ -30,7 +30,7 @@ public class CredentialActivity extends AppCompatActivity {
 
 
     private boolean ifAlreadyLoggedIn(){
-        return true;
+        return false;
     }
 
 }
