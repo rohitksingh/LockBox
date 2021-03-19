@@ -1,9 +1,11 @@
-package com.rohitksingh.lockbox;
+package com.rohitksingh.lockbox.views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.rohitksingh.lockbox.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -1,9 +1,11 @@
-package com.rohitksingh.lockbox;
+package com.rohitksingh.lockbox.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+
+import com.rohitksingh.lockbox.R;
 
 public class CredentialActivity extends AppCompatActivity {
 
