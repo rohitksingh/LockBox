@@ -26,12 +26,13 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
 
         binding = FragmentSignupBinding.inflate(inflater, parent, false);
+        credential = new Credential();
         binding.setCredential(credential);
         binding.setSignUpFragment(this);
         return binding.getRoot();
     }
 
     public void submit(){
-        Toast.makeText(getContext(), "Submit Button", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Credential is "+credential.getPassword(), Toast.LENGTH_SHORT).show();
     }
 }

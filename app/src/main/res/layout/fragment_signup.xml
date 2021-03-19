@@ -29,6 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/FormEditText"
+            android:text="@={credential.password}"
             />
         <EditText
             android:id="@+id/confirmpassword"
