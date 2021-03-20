@@ -55,7 +55,7 @@
             android:textColor="@color/design_default_color_primary"
             app:layout_constraintEnd_toEndOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/confirmpassword"
-            android:enabled="@{ confirmpassword.text.length() == 0 ? false : true }"
+            android:enabled="@{ (confirmpassword.text.length() > 0 &amp;&amp; password.text.length() > 0 ) ? true : false }"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

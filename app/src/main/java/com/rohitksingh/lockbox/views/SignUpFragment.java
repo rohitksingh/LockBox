@@ -33,12 +33,15 @@ public class SignUpFragment extends Fragment {
     }
 
     public void submit(){
-        Toast.makeText(getContext(), "Credential is "+credential.getPassword(), Toast.LENGTH_SHORT).show();
+
+        String password = binding.password.getText().toString();
+        String confirmPassword = binding.confirmpassword.getText().toString();
+
+        if(!password.equals(confirmPassword)){
+            binding.confirmpassword.setError(getString(R.string.password_not_matched));
+        }
+
     }
 
-    //TODO
-    public boolean validate(){
-        return true;
-        //Write method to validate the method
-    }
+
 }
