@@ -2,26 +2,52 @@ package com.rohitksingh.lockbox.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-
 import com.rohitksingh.lockbox.R;
+import com.rohitksingh.lockbox.listener.SignupListener;
+import com.rohitksingh.lockbox.models.Credential;
+import com.rohitksingh.lockbox.viewmodels.CredentialViewModel;
 
-public class CredentialActivity extends AppCompatActivity {
+public class CredentialActivity extends AppCompatActivity implements SignupListener {
 
+    private CredentialViewModel viewModel;
+    private static final String TAG = "CredentialActivity";
+
+    /***********************************************************************************************
+     *                                  Lifecycle methods
+     **********************************************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credential);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.credentialFragmentHolder, getFragment(), "CREDENTIAL_HOLDER")
-                .commit();
-
+        initViewModel();
+        viewModel.getCredential(this);
     }
 
-    public Fragment getFragment(){
+    /***********************************************************************************************
+     *                                  Callback methods
+     **********************************************************************************************/
+    @Override
+    public void submit(Credential credential) {
+        viewModel.savePassword(credential);
+    }
+
+    /***********************************************************************************************
+     *                                  Private methods
+     **********************************************************************************************/
+    private void initViewModel(){
+        viewModel = new ViewModelProvider(this).get(CredentialViewModel.class);
+        viewModel.credentialLiveData.observe(this, credential -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.credentialFragmentHolder, getFragment(), "Something")
+                    .commit();
+        });
+    }
+
+    private Fragment getFragment(){
 
         if(ifAlreadyLoggedIn()){
             return LoginFragment.getInstance();
@@ -31,8 +57,10 @@ public class CredentialActivity extends AppCompatActivity {
     }
 
 
+    //Use something else to determine the if the user is logged in// may be match default password
     private boolean ifAlreadyLoggedIn(){
-        return false;
+        int passwordLength = viewModel.credentialLiveData.getValue().getPassword().length();
+        return passwordLength>0;
     }
 
 }

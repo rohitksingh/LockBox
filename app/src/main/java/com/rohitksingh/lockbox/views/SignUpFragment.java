@@ -1,25 +1,33 @@
 package com.rohitksingh.lockbox.views;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.rohitksingh.lockbox.R;
 import com.rohitksingh.lockbox.databinding.FragmentSignupBinding;
+import com.rohitksingh.lockbox.listener.SignupListener;
 import com.rohitksingh.lockbox.models.Credential;
 
-import androidx.databinding.DataBindingUtil;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public class SignUpFragment extends Fragment {
 
     private Credential credential;
-    FragmentSignupBinding binding;
+    private FragmentSignupBinding binding;
+    private SignupListener listener;
 
     public static SignUpFragment getInstance(){
         return new SignUpFragment();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        listener = (SignupListener)context;
     }
 
     @Override
@@ -33,12 +41,18 @@ public class SignUpFragment extends Fragment {
     }
 
     public void submit(){
-        Toast.makeText(getContext(), "Credential is "+credential.getPassword(), Toast.LENGTH_SHORT).show();
+
+        String password = binding.password.getText().toString();
+        String confirmPassword = binding.confirmpassword.getText().toString();
+
+        if(!password.equals(confirmPassword)){
+            binding.confirmpassword.setError(getString(R.string.password_not_matched));
+        }else{
+            Credential credential = new Credential();
+            credential.setPassword(password);
+            listener.submit(credential);
+        }
+
     }
 
-    //TODO
-    public boolean validate(){
-        return true;
-        //Write method to validate the method
-    }
 }
