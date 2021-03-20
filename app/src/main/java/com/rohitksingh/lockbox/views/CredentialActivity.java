@@ -42,7 +42,7 @@ public class CredentialActivity extends AppCompatActivity implements SignupListe
         viewModel.credentialLiveData.observe(this, credential -> {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.credentialFragmentHolder, getFragment(), "Something")
+                    .add(R.id.credentialFragmentHolder, getFragment(), "FRAGMENT")
                     .commit();
         });
     }
@@ -50,7 +50,7 @@ public class CredentialActivity extends AppCompatActivity implements SignupListe
     private Fragment getFragment(){
 
         if(ifAlreadyLoggedIn()){
-            return LoginFragment.getInstance();
+            return LoginFragment.getInstance(viewModel.credentialLiveData.getValue());
         }else{
             return SignUpFragment.getInstance();
         }
