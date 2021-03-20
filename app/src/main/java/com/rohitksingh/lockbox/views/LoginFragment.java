@@ -43,9 +43,11 @@ public class LoginFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
         viewModel = new ViewModelProvider(this).get(LoginFragmentViewModel.class);
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        binding.setViewModel(viewModel);
         binding.setLoginFragment(this);
+        binding.setLifecycleOwner(this);
         return binding.getRoot();
     }
 
@@ -61,6 +63,7 @@ public class LoginFragment extends Fragment {
 
         viewModel.increaseAttempt();
     }
+
 
 
 
