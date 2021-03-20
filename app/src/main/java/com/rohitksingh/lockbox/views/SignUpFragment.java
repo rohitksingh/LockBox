@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.rohitksingh.lockbox.R;
 import com.rohitksingh.lockbox.databinding.FragmentSignupBinding;
-import com.rohitksingh.lockbox.listener.LoginFragmentListener;
+import com.rohitksingh.lockbox.listener.SignupListener;
 import com.rohitksingh.lockbox.models.Credential;
 
 import androidx.annotation.NonNull;
@@ -18,7 +18,7 @@ public class SignUpFragment extends Fragment {
 
     private Credential credential;
     private FragmentSignupBinding binding;
-    private LoginFragmentListener listener;
+    private SignupListener listener;
 
     public static SignUpFragment getInstance(){
         return new SignUpFragment();
@@ -27,7 +27,7 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        listener = (LoginFragmentListener)context;
+        listener = (SignupListener)context;
     }
 
     @Override
