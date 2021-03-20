@@ -23,7 +23,7 @@ public class CredentialActivity extends AppCompatActivity implements SignupListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credential);
         initViewModel();
-        viewModel.getCredential(this);
+        observeViewModel();
     }
 
     /***********************************************************************************************
@@ -38,13 +38,24 @@ public class CredentialActivity extends AppCompatActivity implements SignupListe
      *                                  Private methods
      **********************************************************************************************/
     private void initViewModel(){
-        viewModel = new ViewModelProvider(this).get(CredentialViewModel.class);
+
+        ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider
+                .AndroidViewModelFactory
+                .getInstance(getApplication());
+
+        viewModel = new ViewModelProvider(this, factory).get(CredentialViewModel.class);
+
+    }
+
+    private void observeViewModel(){
         viewModel.credentialLiveData.observe(this, credential -> {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.credentialFragmentHolder, getFragment(), "FRAGMENT")
                     .commit();
         });
+
+        viewModel.getCredential();
     }
 
     private Fragment getFragment(){
