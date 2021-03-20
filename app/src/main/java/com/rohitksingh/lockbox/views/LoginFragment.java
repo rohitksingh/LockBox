@@ -10,16 +10,19 @@ import android.view.ViewGroup;
 import com.rohitksingh.lockbox.R;
 import com.rohitksingh.lockbox.databinding.FragmentLoginBinding;
 import com.rohitksingh.lockbox.models.Credential;
+import com.rohitksingh.lockbox.viewmodels.LoginFragmentViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 public class LoginFragment extends Fragment {
 
     private Credential credential;
     private static final String PASSWORD = "LoginFragment.PASSWORD";
     private FragmentLoginBinding binding;
+    private LoginFragmentViewModel viewModel;
 
     private static final String TAG = "LoginFragment";
 
@@ -41,6 +44,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(this).get(LoginFragmentViewModel.class);
         binding.setLoginFragment(this);
         return binding.getRoot();
     }
@@ -54,6 +58,8 @@ public class LoginFragment extends Fragment {
         }else{
             binding.password.setError(getString(R.string.incorrect_password));
         }
+
+        viewModel.increaseAttempt();
     }
 
 
