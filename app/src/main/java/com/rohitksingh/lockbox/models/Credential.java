@@ -1,6 +1,8 @@
 package com.rohitksingh.lockbox.models;
 
-public class Credential {
+import java.io.Serializable;
+
+public class Credential implements Serializable {
 
     private String password;
 

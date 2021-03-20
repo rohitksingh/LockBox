@@ -7,4 +7,5 @@
     <string name="enter_password">Enter Your password</string>
     <string name="confirm_password">Confirm Your password</string>
     <string name="password_not_matched">Password does not match</string>
+    <string name="incorrect_password">Password is incorrect!</string>
 </resources>
