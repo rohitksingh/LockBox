@@ -6,22 +6,30 @@ import android.content.Context;
 import com.rohitksingh.lockbox.models.Credential;
 import com.rohitksingh.lockbox.repositories.CredentialRepository;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class CredentialViewModel extends ViewModel {
+public class CredentialViewModel extends AndroidViewModel {
 
     public MutableLiveData<Credential> credentialLiveData = new MutableLiveData<>();
     private CredentialRepository repository;
+    private Application application;
 
-    public LiveData<Credential> getCredential(Context context){
-        loadCredential(context);
+    public CredentialViewModel(@NonNull Application application) {
+        super(application);
+        this.application = application;
+    }
+
+    public LiveData<Credential> getCredential(){
+        loadCredential();
         return credentialLiveData;
     }
 
-    public void loadCredential(Context context){
-        repository = CredentialRepository.getInstance(context);
+    public void loadCredential(){
+        repository = CredentialRepository.getInstance(application.getApplicationContext());
         Credential credential = repository.getCredential();
         credentialLiveData.postValue(credential);
     }
