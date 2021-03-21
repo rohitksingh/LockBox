@@ -23,7 +23,8 @@ public class CredentialActivity extends AppCompatActivity implements SignupListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credential);
         initViewModel();
-        observeViewModel();
+        if(savedInstanceState==null)
+            observeViewModel();
     }
 
     /***********************************************************************************************
