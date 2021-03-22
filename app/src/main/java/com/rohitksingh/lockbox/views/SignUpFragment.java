@@ -24,6 +24,9 @@ public class SignUpFragment extends Fragment {
         return new SignUpFragment();
     }
 
+    /***********************************************************************************************
+     *                                  Lifecycle methods
+     **********************************************************************************************/
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -40,6 +43,9 @@ public class SignUpFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /***********************************************************************************************
+     *                                  Lifecycle methods
+     **********************************************************************************************/
     public void submit(){
 
         String password = binding.password.getText().toString();
