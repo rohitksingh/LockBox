@@ -9,4 +9,5 @@
     <string name="password_not_matched">Password does not match</string>
     <string name="incorrect_password">Password is incorrect!</string>
     <string name="too_many_attemps">Too many attempts! Please wait.</string>
+    <string name="password">Password</string>
 </resources>

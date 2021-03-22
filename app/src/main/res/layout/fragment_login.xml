@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="loginFragment"
-            type="com.rohitksingh.lockbox.views.LoginFragment" />
+        <import type="android.widget.EditText"/>
         <variable
             name="viewModel"
             type="com.rohitksingh.lockbox.viewmodels.LoginFragmentViewModel" />
@@ -39,13 +37,16 @@
             app:layout_constraintTop_toTopOf="parent"/>
         <EditText
             android:id="@+id/password"
-            android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/instructionTextView"
             android:textSize="16sp"
-            style="@style/FormEditText"/>
+            android:text="@={viewModel.password}"
+            style="@style/FormEditText"
+            android:inputType="textPassword"
+            android:enabled="@{! viewModel.showTimer ? true : false}"
+            />
         <Button
             android:id="@+id/submitButton"
             android:layout_width="wrap_content"
@@ -55,8 +56,9 @@
             app:layout_constraintTop_toBottomOf="@+id/password"
             android:layout_marginTop="16dp"
             android:textColor="@color/design_default_color_primary"
-            android:onClick="@{() -> loginFragment.submit()}"
+            android:onClick="@{() -> viewModel.submit()}"
             style="@style/SubmitButton"
+            android:visibility="@{viewModel.password.length()>0 ? View.VISIBLE : View.GONE}"
             />
         <TextView
             android:id="@+id/forgotPassword"

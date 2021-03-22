@@ -1,13 +1,18 @@
 package com.rohitksingh.lockbox.viewmodels;
 
-import android.util.Log;
+import android.app.Application;
 
+import com.rohitksingh.lockbox.repositories.CredentialRepository;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class LoginFragmentViewModel extends ViewModel {
+public class LoginFragmentViewModel extends AndroidViewModel {
 
     private static final String TAG = "LoginFragmentViewModel";
+
+    public MutableLiveData<Boolean> valiadationPassed;
 
     public int numberOfAttemptes = 0;
 
@@ -15,12 +20,22 @@ public class LoginFragmentViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> showTimer;
     public MutableLiveData<Integer> timerValue;
+    public MutableLiveData<String> password;
+    public MutableLiveData<Boolean> showSubmitButton;
 
-    public LoginFragmentViewModel(){
+    private CredentialRepository repository;
+
+    public LoginFragmentViewModel(@NonNull Application application) {
+        super(application);
         showTimer = new MutableLiveData<>();
         timerValue = new MutableLiveData<>();
+        valiadationPassed = new MutableLiveData<>();
         showTimer.setValue(false);
+        showSubmitButton = new MutableLiveData<>();
+        showSubmitButton.setValue(false);
         timerValue.setValue(10);
+        repository = CredentialRepository.getInstance(application.getApplicationContext());
+        password = new MutableLiveData<>();
     }
 
 
@@ -28,13 +43,12 @@ public class LoginFragmentViewModel extends ViewModel {
         numberOfAttemptes++;
         if(numberOfAttemptes>=thrasoldAttempts){
             showTimer.setValue(true);
+            showSubmitButton.setValue(false);
             startTimer();
         }
-        Log.d(TAG, "increaseAttempt: "+numberOfAttemptes);
     }
 
     public void startTimer(){
-        Log.d(TAG, "timerstart: ");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -46,12 +60,27 @@ public class LoginFragmentViewModel extends ViewModel {
                     }
                     int value = timerValue.getValue();
                     timerValue.postValue(--value);
-                    Log.d(TAG, "timerstart: "+ timerValue.getValue()+" "+showTimer.getValue());
                 }
                 showTimer.postValue(false);
+                showSubmitButton.postValue(true);
                 timerValue.postValue(10);
             }
         }).start();
     }
+
+    public void submit(){
+
+        String storedPassword = repository.getCredential().getPassword();
+
+        if (storedPassword.equals(password.getValue())) {
+            valiadationPassed.setValue(true);
+        }else {
+            valiadationPassed.setValue(false);
+            increaseAttempt();
+        }
+
+    }
+
+
 
 }
