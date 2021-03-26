@@ -1,4 +1,4 @@
-package com.rohitksingh.lockbox.views;
+package com.rohitksingh.lockbox.views.activities;
 
 import android.os.Bundle;
 

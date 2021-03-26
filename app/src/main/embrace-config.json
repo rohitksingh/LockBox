@@ -1,0 +1,31 @@
+{
+  "app_id": "Tqq3f",
+  "api_token": "e7153861d53746ab991ca63791b7d1c9",
+  "ndk_enabled": false,
+  "sdk_config": {
+    "crash_handler": {
+      "enabled": true
+    },
+    "networking": {
+      "capture_request_content_length": true,
+      "disabled_url_patterns": [],
+      "enable_native_monitoring": true,
+      "track_id_header": "x-emb-trace-id"
+    },
+    "session": {
+      "async_end": false,
+      "max_session_seconds": null
+    },
+    "startup_moment": {
+      "automatically_end": true,
+      "take_screenshot": true
+    },
+    "taps": {
+      "capture_coordinates": true
+    },
+    "webview": {
+      "capture_query_params": true,
+      "enable": true
+    }
+  }
+}

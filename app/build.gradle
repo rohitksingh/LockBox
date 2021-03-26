@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'embrace-swazzler'
 }
 
 android {
@@ -33,6 +34,11 @@ android {
         dataBinding true
 
     }
+}
+
+embrace {
+    appId = 'Tqq3f'
+    apiToken = 'e7153861d53746ab991ca63791b7d1c9'
 }
 
 dependencies {

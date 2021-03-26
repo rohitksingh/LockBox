@@ -16,7 +16,7 @@ public class LoginFragmentViewModel extends AndroidViewModel {
 
     public int numberOfAttemptes = 0;
 
-    private final int thrasoldAttempts = 2;
+    private final int thrasoldAttempts = 3;
 
     public MutableLiveData<Boolean> showTimer;
     public MutableLiveData<Integer> timerValue;
@@ -33,7 +33,7 @@ public class LoginFragmentViewModel extends AndroidViewModel {
         showTimer.setValue(false);
         showSubmitButton = new MutableLiveData<>();
         showSubmitButton.setValue(false);
-        timerValue.setValue(10);
+        timerValue.setValue(5);
         repository = CredentialRepository.getInstance(application.getApplicationContext());
         password = new MutableLiveData<>();
     }

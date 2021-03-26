@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import com.rohitksingh.lockbox.R;
 import com.rohitksingh.lockbox.databinding.FragmentLoginBinding;
 import com.rohitksingh.lockbox.models.Credential;
-import com.rohitksingh.lockbox.viewmodels.CredentialViewModel;
 import com.rohitksingh.lockbox.viewmodels.LoginFragmentViewModel;
+import com.rohitksingh.lockbox.views.activities.SecretListActivity;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;

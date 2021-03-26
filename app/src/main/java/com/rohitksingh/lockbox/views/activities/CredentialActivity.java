@@ -1,14 +1,17 @@
-package com.rohitksingh.lockbox.views;
+package com.rohitksingh.lockbox.views.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import io.embrace.android.embracesdk.Embrace;
 
 import android.os.Bundle;
 import com.rohitksingh.lockbox.R;
 import com.rohitksingh.lockbox.listener.SignupListener;
 import com.rohitksingh.lockbox.models.Credential;
 import com.rohitksingh.lockbox.viewmodels.CredentialViewModel;
+import com.rohitksingh.lockbox.views.LoginFragment;
+import com.rohitksingh.lockbox.views.SignUpFragment;
 
 public class CredentialActivity extends AppCompatActivity implements SignupListener {
 
@@ -22,6 +25,7 @@ public class CredentialActivity extends AppCompatActivity implements SignupListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credential);
+        Embrace.getInstance().start(this);
         initViewModel();
         if(savedInstanceState==null)
             observeViewModel();
